@@ -1,0 +1,19 @@
+
+<h1>Bar manager</h1>
+
+<app-navigation-bar></app-navigation-bar>
+
+<div *ngIf="content">
+    <ul>
+        <li *ngFor="let product of content;
+                    let i = index;
+                    let isFirst = first;
+                    let isOdd = odd;">
+            <span (click)="addReceipe(product.title)">{{product.title}} {{product.price|formatBill}} {{form.value.receipe|quantity:product.title}}</span>
+        </li>
+    </ul>
+</div>
+
+<!-- <app-content></app-content> -->
+
+<app-footer [billValue]="totalBill"></app-footer>
