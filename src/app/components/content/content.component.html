@@ -1,5 +1,6 @@
 <div *ngIf="contentItemsObj">
     <h1>{{contentItemsObj.title}}</h1>
+    <a routerLink="login">Login</a>
     <ul>
         <li *ngFor="let product of contentItemsObj.data;
             let i = index;

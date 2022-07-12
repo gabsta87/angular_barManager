@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RecettesService } from 'src/app/services/recettes.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { RecettesService } from 'src/app/services/recettes.service';
 })
 export class RestoComponent implements OnInit {
 
-  constructor(private readonly _service : RecettesService) { }
+  constructor(private readonly _service : RecettesService,
+              private readonly _router : Router) { }
 
   items ! : any;
   content ! : [{title:string,description:string,price:number}];
@@ -29,6 +31,12 @@ export class RestoComponent implements OnInit {
       receipe : new FormArray([]),
       bill : new FormControl(0)
     });
+  }
+
+  navigateToLogin(){
+    // this._router.navigateByUrl("login");
+    // this._router.navigate(["login","test"])
+    this._router.navigate(["login"],{queryParams:{lastname:'Maret',firstname:"Gabriel"}})
   }
 
   chooseMenu(chosenMenu:string){
