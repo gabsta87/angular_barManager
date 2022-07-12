@@ -10,18 +10,22 @@ import { RecettesService } from 'src/app/services/recettes.service';
 })
 export class RestoComponent implements OnInit {
 
-  constructor(private readonly _service : RecettesService,
-              private readonly _router : Router,
-              private readonly _route : ActivatedRoute) { }
+  constructor(
+    // private readonly _service : RecettesService,
+    private readonly _router : Router,
+    private readonly _route : ActivatedRoute
+              ) { }
 
   items ! : any;
   content ! : [{title:string,description:string,price:number}];
   form! : FormGroup;
   totalBill : number = 0;
 
-  async ngOnInit() {
-    // this.items = await this._service.getData();
-    const data = this._route.snapshot.data;
+  ngOnInit() {
+    this.items = this._route.snapshot.data['recettes'];
+
+  // async ngOnInit() {
+  //   this.items = await this._service.getData();
 
     this.form = new FormGroup({
       name : new FormControl("",Validators.compose([

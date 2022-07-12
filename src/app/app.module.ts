@@ -36,14 +36,14 @@ import { RecettesResolver } from './services/recettes.resolver';
       component:LoginComponent
     },{
       path:'resto',
-      component:RestoComponent
-    },{
-      path:'',
-      redirectTo:'resto',
-      pathMatch:'full',
+      component:RestoComponent,
       resolve:{
         recettes:RecettesResolver
       }
+    },{
+      path:'',
+      redirectTo:'resto',
+      pathMatch:'full'
     },{
       path:'**',
       redirectTo:'resto',
