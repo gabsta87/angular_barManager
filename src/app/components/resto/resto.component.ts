@@ -39,6 +39,8 @@ export class RestoComponent implements OnInit {
     const liste = this.form.get("receipe") as FormArray;
     // const bill = this.form.get("bill") as FormControl<number>;
     const bill = this.form.get("bill") as FormControl;
+    bill.setValue(0);
+    console.log("bill1= ",bill);
 
     const elem = this.content.find(e => e.title === name);
     let price = 0;
@@ -65,26 +67,27 @@ export class RestoComponent implements OnInit {
         })
         liste.push(group);
       };
-      
+
       console.log("liste = ",liste);
-      
+
       console.log("raw bill=",bill.value);
-      console.log("new value = ",liste.at(i).value.price);
-      
+
       // bill.setValue(
       //   {
       //     bill : bill + liste.at(i).value.price,
       //   }
       // )
+      console.log("form = ",this.form);
+
       bill.patchValue(
         {
-          bill : bill + liste.at(i).value.price,
+          bill : bill.value.price + liste.at(i).value.price,
         }
       )
-      console.log("raw bill=",bill.value);
-      
+      console.log("raw bill=",bill.value.price);
+
       console.log("price = ",price);
-      
+
       this.totalBill += price;
       console.log("var bill:",this.totalBill);
       console.log("form:",this.form.value);
