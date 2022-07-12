@@ -1,24 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { RecettesService } from '../../services/recettes.service';
-import { RestoComponent } from '../resto/resto.component';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
   styleUrls: ['./navigation-bar.component.scss']
 })
-export class NavigationBarComponent implements OnInit {
+export class NavigationBarComponent {
 
-  constructor(private readonly _service : RecettesService, private readonly _resto : RestoComponent) { }
-
-  navigationItemsObj!:any;
-
-  async ngOnInit() {
-    this.navigationItemsObj = await this._service.getData();
-  }
+  @Input() navigationItems!:any;
+  @Output() itemChosen : EventEmitter<string> = new EventEmitter();
 
   selectMenu(menuToDisplay:string){
-    this._resto.chooseMenu(menuToDisplay);
+    this.itemChosen.emit(menuToDisplay);
   }
 
 }

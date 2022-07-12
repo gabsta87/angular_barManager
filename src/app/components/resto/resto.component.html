@@ -1,22 +1,9 @@
 
 <h1>Bar manager</h1>
 
-<a routerLink="/login">Login</a>
-<button (click)="navigateToLogin()">Login</button>
+<app-navigation-bar (itemChosen)="contentElement.chooseMenu($event)" [navigationItems]="content"></app-navigation-bar>
 
-<app-navigation-bar></app-navigation-bar>
+<app-content #contentElement [items]="content"></app-content>
 
-<div *ngIf="content">
-    <ul>
-        <li *ngFor="let product of content;
-                    let i = index;
-                    let isFirst = first;
-                    let isOdd = odd;">
-            <span (click)="addReceipe(product.title)">{{product.title}} {{product.price|formatBill}} {{form.value.receipe|quantity:product.title}}</span>
-        </li>
-    </ul>
-</div>
-
-<!-- <app-content></app-content> -->
-
-<app-footer [billValue]="totalBill"></app-footer>
+<!-- <app-footer [billValue]="totalBill"></app-footer> -->
+<app-footer ></app-footer>

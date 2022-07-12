@@ -1,10 +1,11 @@
-<div *ngIf="navigationItemsObj">
-    <p>Menus</p>
+<div *ngIf="navigationItems">
+    <p>Navigation</p>
     <ul>
-        <li *ngFor="let product of navigationItemsObj.data;
+        <li *ngFor="let product of navigationItems.data;
                     let i = index;
                     let isFirst = first;
-                    let isOdd = odd;">
+                    let isOdd = odd;
+                    ">
             <span (click)="selectMenu(product.title)">{{product.title}}</span>
         </li>
     </ul>

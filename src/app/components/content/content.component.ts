@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { RecettesService } from '../../services/recettes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content',
@@ -9,15 +9,17 @@ import { RecettesService } from '../../services/recettes.service';
 })
 export class ContentComponent implements OnInit {
 
-  constructor(private readonly _service : RecettesService)
-  { }
+  constructor(
+    private readonly _router : Router,
+  ){ }
 
-  contentItemsObj!: any;
+  @Input() items ! : any;
+
+  selectedMenu ! : [{title:string,description:string,price:number}];
 
   form! : FormGroup;
 
-  async ngOnInit(){
-    this.contentItemsObj = await this._service.getData();
+  ngOnInit() {
     this.form = new FormGroup({
       name : new FormControl("",Validators.compose([
         Validators.required,
@@ -25,31 +27,54 @@ export class ContentComponent implements OnInit {
         Validators.maxLength(10)
       ])),
       email : new FormControl(),
-      receipe : new FormArray([]),
+      recipe : new FormArray([]),
+      bill : new FormControl(0)
     });
   }
 
-  addReceipe(name:string){
-    const liste = this.form.get("receipe") as FormArray;
+  navigateToLogin(){
+    // this._router.navigateByUrl("login");
+    // this._router.navigate(["login","test"])
+    this._router.navigate(["login"],{queryParams:{lastname:'Maret',firstname:"Gabriel"}})
+  }
 
-    // If the receipe already exists
-    let i = liste.value.findIndex((e:any) => e.name === name);
+  chooseMenu(chosenMenu:string){
+    console.log("chosen menu : ",chosenMenu);
+    
+    this.selectedMenu = this.items.data.find((e:any) => e.title === chosenMenu).recipes;
+  }
+
+  addRecipe(name:string){
+    const recipesList = this.form.get("recipe") as FormArray;
+    const bill = this.form.get("bill") as FormControl;
+
+    const elem = this.selectedMenu.find(e => e.title === name);
+    let price = 0;
+    if(elem)
+      price = elem.price;
+
+    // If the recipe already exists
+    let i = recipesList.value.findIndex((e:any) => e.name === name);
     if(i >= 0){
-      const elemToIncrease = liste.at(i);
+      const elemToIncrease = recipesList.at(i);
       const quantity = elemToIncrease.value.quantity;
       elemToIncrease.patchValue({
         quantity : quantity + 1
       });
     }else{
-      // else (the receipe must be added)
+      // else (the recipe must be added)
       const group = new FormGroup({
           name : new FormControl(name,Validators.required),
           quantity : new FormControl(1,Validators.compose([
             Validators.required,
-            Validators.min(1)]))
+            Validators.min(1)])),
+          price : new FormControl(price)
         })
-        liste.push(group);
-
+        recipesList.push(group);
       };
+
+      bill.patchValue(
+        bill.value + recipesList.at(i).value.price
+      )
     }
 }

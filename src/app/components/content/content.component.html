@@ -1,17 +1,14 @@
-<div *ngIf="contentItemsObj">
-    <h1>{{contentItemsObj.title}}</h1>
-    <a routerLink="login">Login</a>
+
+<a routerLink="/login">Login</a>
+<button (click)="navigateToLogin">Login</button>
+
+<div *ngIf="selectedMenu">
     <ul>
-        <li *ngFor="let product of contentItemsObj.data;
-            let i = index;
-            let isFirst = first;
-            let isOdd = odd;">
-            {{product.title}}
-            <ul>
-                <li *ngFor="let e of product.recipes;"
-                (click)="addReceipe(e.title)">{{e.title}} {{form.value.receipe|quantity:e.title}}
-                </li>
-            </ul>
+        <li *ngFor="let product of selectedMenu;
+                    let i = index;
+                    let isFirst = first;
+                    let isOdd = odd;">
+            <span (click)="addRecipe(product.title)">{{product.title}} {{product.price|formatBill}} {{form.value.recipe|quantity:product.title}}</span>
         </li>
     </ul>
 </div>
