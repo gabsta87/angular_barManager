@@ -7,7 +7,7 @@ import { Component, Input, OnInit} from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  billValue! : number;
+  billValue : number = 0;
 
   ngOnInit(): void {}
 
