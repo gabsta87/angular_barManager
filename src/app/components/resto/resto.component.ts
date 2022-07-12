@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecettesService } from 'src/app/services/recettes.service';
 
 @Component({
@@ -11,7 +11,8 @@ import { RecettesService } from 'src/app/services/recettes.service';
 export class RestoComponent implements OnInit {
 
   constructor(private readonly _service : RecettesService,
-              private readonly _router : Router) { }
+              private readonly _router : Router,
+              private readonly _route : ActivatedRoute) { }
 
   items ! : any;
   content ! : [{title:string,description:string,price:number}];
@@ -19,7 +20,8 @@ export class RestoComponent implements OnInit {
   totalBill : number = 0;
 
   async ngOnInit() {
-    this.items = await this._service.getData();
+    // this.items = await this._service.getData();
+    const data = this._route.snapshot.data;
 
     this.form = new FormGroup({
       name : new FormControl("",Validators.compose([

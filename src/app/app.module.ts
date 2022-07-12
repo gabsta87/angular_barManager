@@ -13,6 +13,7 @@ import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RestoComponent } from './components/resto/resto.component';
 import { FormatBillPipe } from './pipes/format-bill.pipe';
+import { RecettesResolver } from './services/recettes.resolver';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,10 @@ import { FormatBillPipe } from './pipes/format-bill.pipe';
     },{
       path:'',
       redirectTo:'resto',
-      pathMatch:'full'
+      pathMatch:'full',
+      resolve:{
+        recettes:RecettesResolver
+      }
     },{
       path:'**',
       redirectTo:'resto',
