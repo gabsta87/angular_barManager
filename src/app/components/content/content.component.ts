@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -14,6 +14,7 @@ export class ContentComponent implements OnInit {
   ){ }
 
   @Input() items ! : any;
+  @Output() recipeSelected : EventEmitter<number> = new EventEmitter();
 
   selectedMenu ! : [{title:string,description:string,price:number}];
 
@@ -39,8 +40,6 @@ export class ContentComponent implements OnInit {
   }
 
   chooseMenu(chosenMenu:string){
-    console.log("chosen menu : ",chosenMenu);
-    
     this.selectedMenu = this.items.data.find((e:any) => e.title === chosenMenu).recipes;
   }
 
@@ -76,5 +75,6 @@ export class ContentComponent implements OnInit {
       bill.patchValue(
         bill.value + recipesList.at(i).value.price
       )
+      this.recipeSelected.emit(bill.value);
     }
 }

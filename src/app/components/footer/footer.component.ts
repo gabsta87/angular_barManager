@@ -7,11 +7,11 @@ import { Component, Input, OnInit} from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  billValue! : number;
 
-  @Input() billValue! :number;
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
+  updateBill(param:number){
+    this.billValue = param;
   }
-
 }

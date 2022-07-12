@@ -3,7 +3,6 @@
 
 <app-navigation-bar (itemChosen)="contentElement.chooseMenu($event)" [navigationItems]="content"></app-navigation-bar>
 
-<app-content #contentElement [items]="content"></app-content>
+<app-content #contentElement [items]="content" (recipeSelected)="footerElement.updateBill($event)"></app-content>
 
-<!-- <app-footer [billValue]="totalBill"></app-footer> -->
-<app-footer ></app-footer>
+<app-footer #footerElement></app-footer>
