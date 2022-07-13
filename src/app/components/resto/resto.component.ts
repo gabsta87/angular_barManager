@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RecettesService } from 'src/app/services/recettes.service';
 
 @Component({
@@ -6,13 +7,15 @@ import { RecettesService } from 'src/app/services/recettes.service';
   templateUrl: './resto.component.html',
   styleUrls: ['./resto.component.scss']
 })
-export class RestoComponent{
-
-  constructor(private readonly _service : RecettesService) { }
+export class RestoComponent implements OnInit{
 
   content!:any;
 
   async ngOnInit() {
-    this.content = await this._service.getData();
+    this.content = this._resolver.snapshot.data["recettes"];
   }
+
+  constructor(
+              private readonly _resolver : ActivatedRoute
+    ) {}
 }
