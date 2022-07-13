@@ -1,30 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { CommandButtonColorPipe } from './pipes/command-button-color.pipe';
 import { QuantityPipe } from './pipes/quantity.pipe';
-import { HttpClientModule } from '@angular/common/http'
-import { RouterModule } from '@angular/router';
-import { LoginComponent } from './features/login/components/login/login.component';
-import { RestoComponent } from './components/resto/resto.component';
 import { FormatBillPipe } from './pipes/format-bill.pipe';
 import { RecettesResolver } from './services/recettes.resolver';
-import { ContentComponent } from './components/content/content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationBarComponent,
-    FooterComponent,
-    ContentComponent,
+    // NavigationBarComponent,
+    // FooterComponent,
+    // ContentComponent,
     CommandButtonColorPipe,
     QuantityPipe,
     // LoginComponent,
-    RestoComponent,
+    // RestoComponent,
     FormatBillPipe
   ],
   imports: [
@@ -37,7 +32,8 @@ import { ContentComponent } from './components/content/content.component';
       // component:LoginComponent
     },{
       path:'resto',
-      component:RestoComponent,
+      loadChildren:()=>import("./features/resto/resto.module").then(fichier=>fichier.RestoModule),
+      // component:RestoComponent,
       resolve:{
         recettes:RecettesResolver
       }
