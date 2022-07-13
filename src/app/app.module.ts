@@ -9,7 +9,7 @@ import { CommandButtonColorPipe } from './pipes/command-button-color.pipe';
 import { QuantityPipe } from './pipes/quantity.pipe';
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './features/login/components/login/login.component';
 import { RestoComponent } from './components/resto/resto.component';
 import { FormatBillPipe } from './pipes/format-bill.pipe';
 import { RecettesResolver } from './services/recettes.resolver';
@@ -23,7 +23,7 @@ import { ContentComponent } from './components/content/content.component';
     ContentComponent,
     CommandButtonColorPipe,
     QuantityPipe,
-    LoginComponent,
+    // LoginComponent,
     RestoComponent,
     FormatBillPipe
   ],
@@ -33,7 +33,8 @@ import { ContentComponent } from './components/content/content.component';
     HttpClientModule,
     RouterModule.forRoot([{
       path:'login',
-      component:LoginComponent
+      loadChildren:()=>import("./features/login/login.module").then(fichier=>fichier.LoginModule)
+      // component:LoginComponent
     },{
       path:'resto',
       component:RestoComponent,
