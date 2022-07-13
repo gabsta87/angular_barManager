@@ -5,9 +5,6 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CommandButtonColorPipe } from './pipes/command-button-color.pipe';
-import { QuantityPipe } from './pipes/quantity.pipe';
-import { FormatBillPipe } from './pipes/format-bill.pipe';
 import { RecettesResolver } from './services/recettes.resolver';
 
 @NgModule({
@@ -16,11 +13,13 @@ import { RecettesResolver } from './services/recettes.resolver';
     // NavigationBarComponent,
     // FooterComponent,
     // ContentComponent,
-    CommandButtonColorPipe,
-    QuantityPipe,
-    // LoginComponent,
     // RestoComponent,
-    FormatBillPipe
+
+    // LoginComponent,
+
+    // CommandButtonColorPipe,
+    // QuantityPipe,
+    // FormatBillPipe
   ],
   imports: [
     BrowserModule,
