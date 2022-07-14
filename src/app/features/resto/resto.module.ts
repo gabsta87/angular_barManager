@@ -8,9 +8,10 @@ import { ContentComponent } from './components/content/content.component';
 import { FormatBillPipe } from './pipes/format-bill.pipe';
 import { CommandButtonColorPipe } from './pipes/command-button-color.pipe';
 import { QuantityPipe } from './pipes/quantity.pipe';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { RecettesResolver } from './services/recettes.resolver';
 import { RecettesService } from './services/recettes.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RecettesService } from './services/recettes.service';
   imports: [
     CommonModule,
     SharedModule,
+    HttpClientModule,
     RouterModule.forChild([{
       path:'',
       component:RestoComponent,
