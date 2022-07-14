@@ -1,0 +1,4 @@
+0. Solve problem : Doesn't contains Component definition
+
+1. Should I move my resolver inside the children module ? Yes
+2. Should I move my pipes to a shared module ? Or if they are specific, I can move them to the module folder ?

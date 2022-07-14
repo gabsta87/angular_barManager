@@ -1,0 +1,14 @@
+
+<a routerLink="/login">Login</a>
+<button (click)="navigateToLogin">Login</button>
+
+<div *ngIf="selectedMenu">
+    <ul>
+        <li *ngFor="let product of selectedMenu;
+                    let i = index;
+                    let isFirst = first;
+                    let isOdd = odd;">
+            <span (click)="addRecipe(product.title)">{{product.title}} {{product.price|formatBill}} {{form.value.recipe|quantity:product.title}}</span>
+        </li>
+    </ul>
+</div>
