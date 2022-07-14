@@ -5,21 +5,10 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RecettesResolver } from './services/recettes.resolver';
 
 @NgModule({
   declarations: [
     AppComponent,
-    // NavigationBarComponent,
-    // FooterComponent,
-    // ContentComponent,
-    // RestoComponent,
-
-    // LoginComponent,
-
-    // CommandButtonColorPipe,
-    // QuantityPipe,
-    // FormatBillPipe
   ],
   imports: [
     BrowserModule,
@@ -31,11 +20,7 @@ import { RecettesResolver } from './services/recettes.resolver';
       // component:LoginComponent
     },{
       path:'resto',
-      loadChildren:()=>import("./features/resto/resto.module").then(fichier=>fichier.RestoModule),
-      // component:RestoComponent,
-      resolve:{
-        recettes:RecettesResolver
-      }
+      loadChildren:()=>import("./features/resto/resto.module").then(fichier=>fichier.RestoModule)
     },{
       path:'',
       redirectTo:'resto',

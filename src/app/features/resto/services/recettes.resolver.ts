@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import {Resolve} from '@angular/router';
 import { RecettesService } from './recettes.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class RecettesResolver implements Resolve<Object> {
 
   constructor(

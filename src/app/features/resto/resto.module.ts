@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { RestoComponent } from './components/resto/resto.component';
+import { RestoComponent } from './containers/resto/resto.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContentComponent } from './components/content/content.component';
@@ -9,6 +9,8 @@ import { FormatBillPipe } from './pipes/format-bill.pipe';
 import { CommandButtonColorPipe } from './pipes/command-button-color.pipe';
 import { QuantityPipe } from './pipes/quantity.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { RecettesResolver } from './services/recettes.resolver';
+import { RecettesService } from './services/recettes.service';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,14 @@ import { SharedModule } from '../shared/shared.module';
     RouterModule.forChild([{
       path:'',
       component:RestoComponent,
-      // resolve:{
-      //   recettes:RecettesResolver
-      // }
+      resolve:{
+        recettes:RecettesResolver
+      }
     }]),
+  ],
+  providers:[
+    RecettesResolver,
+    RecettesService
   ]
 })
 export class RestoModule { }
