@@ -12,16 +12,19 @@ import { SharedModule } from '../../shared/shared.module';
 import { RecettesResolver } from './services/recettes.resolver';
 import { RecettesService } from './services/recettes.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormatDatePipe } from './pipes/format-date.pipe';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
     RestoComponent,NavigationBarComponent,FooterComponent,ContentComponent,
-    FormatBillPipe,CommandButtonColorPipe, QuantityPipe,
+    FormatBillPipe,CommandButtonColorPipe, QuantityPipe, FormatDatePipe,
   ],
   imports: [
     CommonModule,
     SharedModule,
     HttpClientModule,
+    IonicModule,
     RouterModule.forChild([{
       path:'',
       component:RestoComponent,

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AppComponent } from './app.component';
       path:'**',
       redirectTo:'resto',
       pathMatch:'full'
-    }])
+    }]),
+    IonicModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

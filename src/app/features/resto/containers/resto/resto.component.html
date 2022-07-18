@@ -1,4 +1,4 @@
-
+<ion-content>
 <h1>Bar manager</h1>
 
 <app-navigation-bar (itemChosen)="contentElement.chooseMenu($event)" [navigationItems]="content"></app-navigation-bar>
@@ -6,3 +6,4 @@
 <app-content #contentElement [items]="content" (recipeSelected)="footerElement.updateBill($event)"></app-content>
 
 <app-footer #footerElement></app-footer>
+</ion-content>
