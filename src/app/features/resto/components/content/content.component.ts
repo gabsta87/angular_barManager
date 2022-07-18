@@ -32,8 +32,6 @@ export class ContentComponent implements OnInit {
   }
 
   navigateToLogin(){
-    // this._router.navigateByUrl("login");
-    // this._router.navigate(["login","test"])
     this._router.navigate(["login"],{queryParams:{lastname:'Maret',firstname:"Gabriel"}})
   }
 

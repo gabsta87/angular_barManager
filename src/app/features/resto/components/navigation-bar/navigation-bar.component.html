@@ -1,15 +1,13 @@
-<ion-content>
 <div *ngIf="navigationItems">
     <p>Navigation</p>
-    <ul>
-        <li *ngFor="let product of navigationItems.data;
-                    let i = index;
-                    let isFirst = first;
-                    let isOdd = odd;
-                    ">
-            <span (click)="selectMenu(product.title)">{{product.title}}</span>
-        </li>
-    </ul>
+    <ion-list>
+        <ion-item *ngFor="let product of navigationItems.data;
+                            let i = index;
+                            let isFirst = first;
+                            let isOdd = odd;
+                            ">
+            <ion-label (click)="selectMenu(product.title)">{{product.title}}</ion-label>
+        </ion-item>
+    </ion-list>
 </div>
 <a routerLink="/login"> testing link</a>
-</ion-content>
