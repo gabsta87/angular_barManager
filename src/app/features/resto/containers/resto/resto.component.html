@@ -1,9 +1,17 @@
 <ion-content>
-<h1>Bar manager</h1>
+<ion-grid>
+    <ion-row>
+        <ion-col size="2">
+            <app-navigation-bar (itemChosen)="contentElement.chooseMenu($event)" [navigationItems]="content"></app-navigation-bar>
+        </ion-col>
+        <ion-col>
+            <app-content #contentElement [items]="content" (recipeSelected)="footerElement.updateBill($event)"></app-content>
+        </ion-col>
+    </ion-row>
+    
+    
+    <app-footer #footerElement></app-footer>
 
-<app-navigation-bar (itemChosen)="contentElement.chooseMenu($event)" [navigationItems]="content"></app-navigation-bar>
+</ion-grid>
 
-<app-content #contentElement [items]="content" (recipeSelected)="footerElement.updateBill($event)"></app-content>
-
-<app-footer #footerElement></app-footer>
 </ion-content>
