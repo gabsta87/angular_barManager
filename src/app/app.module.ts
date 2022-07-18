@@ -1,41 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { ContentComponent } from './components/content/content.component';
-import { CommandButtonColorPipe } from './pipes/command-button-color.pipe';
-import { QuantityPipe } from './pipes/quantity.pipe';
-import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { RestoComponent } from './components/resto/resto.component';
-import { FormatBillPipe } from './pipes/format-bill.pipe';
+
+import { AppComponent } from './app.component';
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationBarComponent,
-    FooterComponent,
-    ContentComponent,
-    CommandButtonColorPipe,
-    QuantityPipe,
-    LoginComponent,
-    RestoComponent,
-    FormatBillPipe
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
     RouterModule.forRoot([{
       path:'login',
-      component:LoginComponent
+      loadChildren:()=>import("./features/login/login.module").then(fichier=>fichier.LoginModule)
     },{
       path:'resto',
-      component:RestoComponent
+      loadChildren:()=>import("./features/resto/resto.module").then(fichier=>fichier.RestoModule)
     },{
       path:'',
       redirectTo:'resto',
@@ -44,8 +25,8 @@ import { FormatBillPipe } from './pipes/format-bill.pipe';
       path:'**',
       redirectTo:'resto',
       pathMatch:'full'
-    }
-  ])
+    }]),
+    IonicModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

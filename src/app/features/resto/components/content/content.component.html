@@ -1,0 +1,13 @@
+<a routerLink="/login">Login</a>
+<ion-button (click)="navigateToLogin()">Login</ion-button>
+
+<div *ngIf="selectedMenu">
+    <ion-list>
+        <ion-item *ngFor="let product of selectedMenu;
+                            let i = index;
+                            let isFirst = first;
+                            let isOdd = odd;">
+            <ion-label (click)="addRecipe(product.title)">{{product.title}} {{product.price|formatBill}} {{form.value.recipe|quantity:product.title}}</ion-label>
+        </ion-item>
+    </ion-list>
+</div>
