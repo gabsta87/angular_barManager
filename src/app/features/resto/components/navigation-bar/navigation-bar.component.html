@@ -1,11 +1,12 @@
 <div *ngIf="navigationItems" class="myNavBar">
     <ion-list class="ion-no-padding">
-        <ion-item *ngFor="let product of navigationItems.data;
+        <ion-item button="true" *ngFor="let product of navigationItems.data;
                             let i = index;
                             let isFirst = first;
                             let isOdd = odd;
                             ">
-            <ion-label class="ion-text-center ion-text-wrap ion-padding-horizontal ion-text-uppercase" (click)="selectMenu(product.title)">{{product.title}}</ion-label>
+            <!-- <ion-label class="ion-text-center ion-text-wrap ion-padding-horizontal ion-text-uppercase" (click)="selectMenu(product.title)">{{product.title}}</ion-label> -->
+            <ion-label class="ion-text-center ion-text-wrap ion-padding-horizontal ion-text-uppercase" >{{product.title}}</ion-label>
         </ion-item>
     </ion-list>
 </div>
