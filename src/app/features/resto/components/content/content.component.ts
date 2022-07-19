@@ -37,7 +37,7 @@ export class ContentComponent implements OnInit {
 
   chooseMenu(chosenMenu:string){
     this.selectedMenu = this.items.data.find((e:any) => e.title === chosenMenu).recipes;
-    // console.log("data=",this.items.data);
+    console.log("data=",this.items.data);
   }
 
   addRecipe(name:string){

@@ -1,5 +1,8 @@
 <!-- <button [ngStyle]="{'background-color': billValue | commandButtonColor}">Confirm {{billValue|formatBill}}</button> -->
-<ion-button color="success" expand="full">Order - {{billValue|formatBill}}</ion-button>
+<ion-button [color]="billValue|ionicButtonColor"
+            class="ion-no-margin myOrderButton"
+            expand="full">
+            Order - {{billValue|formatBill}}</ion-button>
 
 <!-- <p [ngStyle]="{'color': billValue | quantityColor}">This is a test</p>
 <p>{{now|formatDate}}</p> -->

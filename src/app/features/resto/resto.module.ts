@@ -14,11 +14,12 @@ import { RecettesService } from './services/recettes.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormatDatePipe } from './pipes/format-date.pipe';
 import { IonicModule } from '@ionic/angular';
+import { IonicButtonColorPipe } from './pipes/ionic-button-color.pipe';
 
 @NgModule({
   declarations: [
     RestoComponent,NavigationBarComponent,FooterComponent,ContentComponent,
-    FormatBillPipe,CommandButtonColorPipe, QuantityPipe, FormatDatePipe,
+    FormatBillPipe,CommandButtonColorPipe, QuantityPipe, FormatDatePipe, IonicButtonColorPipe,
   ],
   imports: [
     CommonModule,

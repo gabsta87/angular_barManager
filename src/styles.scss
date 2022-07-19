@@ -8,6 +8,16 @@
     --ion-text-color:var(--ion-color-primary-contrast);
 }
 
+.myOrderButton{
+    --ion-border-radius:10px;
+}
+
+.myRecipeElement{
+    background-color: var(--ion-color-secondary);
+    min-height: 150px;
+    margin: 0.5px;
+}
+
 ion-item{
     --padding-start : 0px;
 }
