@@ -6,7 +6,9 @@
                             let isOdd = odd;
                             ">
             <!-- <ion-label class="ion-text-center ion-text-wrap ion-padding-horizontal ion-text-uppercase" (click)="selectMenu(product.title)">{{product.title}}</ion-label> -->
-            <ion-label class="ion-text-center ion-text-wrap ion-padding-horizontal ion-text-uppercase" >{{product.title}}</ion-label>
+            <ion-label class="ion-text-center ion-text-wrap ion-padding-horizontal ion-text-uppercase"
+                    (click)="navigateToContent(getName(i))"
+                    >{{product.title}}</ion-label>
         </ion-item>
     </ion-list>
 </div>

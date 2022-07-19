@@ -22,7 +22,9 @@
 <div *ngIf="this.items.data" id="myContentDiv">
     <ion-grid class="ion-no-padding">
         <!-- <ion-row *ngFor="let p of [...this.items.data]"> -->
-        <ion-row *ngFor="let p of this.fullMenu">
+        <!-- Iterating over the super menus -->
+        <ion-row *ngFor="let p of this.fullMenu; let i = index;" id="recipes_group_{{i}}">
+            <!-- Iterating over the sub menus, through the recipes -->
             <ion-col class="myRecipeElement" *ngFor="let product of p.recipes;
                 let i = index;
                 let isFirst = first;

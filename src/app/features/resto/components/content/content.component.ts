@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IonContent } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-content',
@@ -9,10 +11,11 @@ import { Router } from '@angular/router';
 })
 export class ContentComponent implements OnInit {
 
-  constructor(private readonly _router : Router){ }
+  constructor(private readonly _router : Router,private route: ActivatedRoute){ }
 
   @Input() items ! : any;
   @Output() recipeSelected : EventEmitter<number> = new EventEmitter();
+  @ViewChild(IonContent)content!: IonContent;
 
   form! : FormGroup;
   fullMenu! : any;
