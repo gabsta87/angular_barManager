@@ -8,7 +8,7 @@
                 let i = index;
                 let isFirst = first;
                 let isOdd = odd;" size="3">
-                <div (click)="addRecipe(product.title)" class="ion-text-center ion-center">
+                <div (click)="addRecipe(product.title)" class="ion-text-center">
                     <ion-thumbnail>
                         <img src="{{product.imageUrl}}">
                     </ion-thumbnail>
@@ -19,22 +19,21 @@
     </ion-grid>
 </div> -->
 
-<div *ngIf="selectedMenu" id="myContentDiv">
+<div *ngIf="this.items.data" id="myContentDiv">
     <ion-grid class="ion-no-padding">
-        <!-- <ion-row *ngFor="let p of items.data"> -->
-        <ion-row >
-            <ion-col *ngFor="let product of selectedMenu;
+        <!-- <ion-row *ngFor="let p of [...this.items.data]"> -->
+        <ion-row *ngFor="let p of this.fullMenu">
+            <ion-col class="myRecipeElement" *ngFor="let product of p.recipes;
                 let i = index;
                 let isFirst = first;
                 let isOdd = odd;" size="3">
-                <div (click)="addRecipe(product.title)" class="ion-text-center ion-align-items-center ion-justify-content-center myRecipeElement">
-                    <div class="ion-align-items-center">
-                        <ion-thumbnail>
-                            <img *ngIf="product.imageUrl.length > 0" src="{{product.imageUrl}}">
-                        </ion-thumbnail>
-                        <!-- <ion-label >{{product.title}} {{product.price|formatBill}} {{form.value.recipe|quantity:product.title}}</ion-label> -->
-                        <ion-label >{{product.title}}<br> {{product.price|formatBill}}</ion-label>
-                    </div>
+                <div (click)="addRecipe(product.title)" class="ion-text-center ion-align-items-center ion-justify-content-center">
+                    <ion-thumbnail>
+                        <img *ngIf="product.imageUrl.length > 0" src="{{product.imageUrl}}">
+                    </ion-thumbnail>
+                    <!-- <ion-label >{{product.title}} {{product.price|formatBill}} {{form.value.recipe|quantity:product.title}}</ion-label> -->
+                    <ion-label >{{product.title}}<br> {{product.price|formatBill}}</ion-label>
+                    <ion-chip *ngIf="form.value.recipe|quantity:product.title">{{form.value.recipe|quantity:product.title}}</ion-chip>
                 </div>
             </ion-col>
         </ion-row>

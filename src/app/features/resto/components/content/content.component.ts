@@ -14,9 +14,8 @@ export class ContentComponent implements OnInit {
   @Input() items ! : any;
   @Output() recipeSelected : EventEmitter<number> = new EventEmitter();
 
-  selectedMenu ! : {title:string,description:string,price:number,imageUrl:string}[];
-
   form! : FormGroup;
+  fullMenu! : any;
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -29,6 +28,7 @@ export class ContentComponent implements OnInit {
       recipe : new FormArray([]),
       bill : new FormControl(0)
     });
+    this.fullMenu = [...this.items.data];
   }
 
   navigateToLogin(){
@@ -36,15 +36,20 @@ export class ContentComponent implements OnInit {
   }
 
   chooseMenu(chosenMenu:string){
-    this.selectedMenu = this.items.data.find((e:any) => e.title === chosenMenu).recipes;
-    console.log("data=",this.items.data);
+    // this.selectedMenu = this.items.data.find((e:any) => e.title === chosenMenu).recipes;
+    console.log("TODO : navigate to anchor");
   }
 
   addRecipe(name:string){
     const recipesList = this.form.get("recipe") as FormArray;
     const bill = this.form.get("bill") as FormControl;
 
-    const elem = this.selectedMenu.find(e => e.title === name);
+    let elem;
+
+    for(let i = 0;i<this.items.data.length && elem===undefined;i++){
+      elem = this.items.data[i].recipes.find((e:{title:String,price:Number}) => e.title === name);
+    }
+
     let price = 0;
     if(elem)
       price = elem.price;
