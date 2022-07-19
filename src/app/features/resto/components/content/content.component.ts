@@ -14,7 +14,7 @@ export class ContentComponent implements OnInit {
   @Input() items ! : any;
   @Output() recipeSelected : EventEmitter<number> = new EventEmitter();
 
-  selectedMenu ! : [{title:string,description:string,price:number}];
+  selectedMenu ! : {title:string,description:string,price:number,imageUrl:string}[];
 
   form! : FormGroup;
 
@@ -37,6 +37,7 @@ export class ContentComponent implements OnInit {
 
   chooseMenu(chosenMenu:string){
     this.selectedMenu = this.items.data.find((e:any) => e.title === chosenMenu).recipes;
+    // console.log("data=",this.items.data);
   }
 
   addRecipe(name:string){

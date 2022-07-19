@@ -1,15 +1,40 @@
-<a routerLink="/login">Login</a>
-<ion-button (click)="navigateToLogin()">Login</ion-button>
+<!-- <a routerLink="/login">Login</a>
+<ion-button (click)="navigateToLogin()">Login</ion-button> -->
 
-<div *ngIf="selectedMenu">
+<!-- <div *ngIf="selectedMenu">
     <ion-grid>
         <ion-row>
-
             <ion-col *ngFor="let product of selectedMenu;
                 let i = index;
                 let isFirst = first;
-                let isOdd = odd;">
-                <ion-label (click)="addRecipe(product.title)">{{product.title}} {{product.price|formatBill}} {{form.value.recipe|quantity:product.title}}</ion-label>
+                let isOdd = odd;" size="3">
+                <div (click)="addRecipe(product.title)" class="ion-text-center ion-center">
+                    <ion-thumbnail>
+                        <img src="{{product.imageUrl}}">
+                    </ion-thumbnail>
+                    <ion-label >{{product.title}}<br> {{product.price|formatBill}}</ion-label>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div> -->
+
+
+<div *ngIf="selectedMenu" id="myContentDiv">
+    <ion-grid>
+        <!-- <ion-row *ngFor="let p of items.data"> -->
+            <ion-row >
+                <ion-col *ngFor="let product of selectedMenu;
+                let i = index;
+                let isFirst = first;
+                let isOdd = odd;" size="3">
+                <div (click)="addRecipe(product.title)" class="ion-text-center ion-center">
+                    <ion-thumbnail >
+                        <img *ngIf="product.imageUrl.length > 0" src="{{product.imageUrl}}">
+                    </ion-thumbnail>
+                    <!-- <ion-label >{{product.title}} {{product.price|formatBill}} {{form.value.recipe|quantity:product.title}}</ion-label> -->
+                    <ion-label >{{product.title}}<br> {{product.price|formatBill}}</ion-label>
+                </div>
             </ion-col>
         </ion-row>
     </ion-grid>
