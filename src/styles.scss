@@ -22,9 +22,14 @@ ion-chip{
     background-color: var(--ion-color-secondary);
 }
 
+.active{
+    --background-color: red;
+    // background-color: var(--ion-color-secondary);
+}
+
 ion-item{
     --padding-start : 0px;
-    --border-color: var(--ion-color-secondary); 
+    --border-color: var(--ion-color-secondary);
 }
 
 ion-thumbnail{

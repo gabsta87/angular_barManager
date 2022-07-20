@@ -27,6 +27,7 @@ import { IonicModule } from '@ionic/angular';
       pathMatch:'full'
     }]),
     IonicModule.forRoot()
+    // IonicModule.forRoot({mode:'md'})
   ],
   providers: [],
   bootstrap: [AppComponent]

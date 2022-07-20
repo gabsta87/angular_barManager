@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IonContent } from '@ionic/angular';
+import { IonRow } from '@ionic/angular';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class ContentComponent implements OnInit {
 
   @Input() items ! : any;
   @Output() recipeSelected : EventEmitter<number> = new EventEmitter();
-  @ViewChild(IonContent)content!: IonContent;
+  @ViewChildren(IonRow) ionRows!:QueryList<IonRow>;
 
   form! : FormGroup;
   fullMenu! : any;
@@ -40,7 +40,11 @@ export class ContentComponent implements OnInit {
 
   chooseMenu(chosenMenu:string){
     // this.selectedMenu = this.items.data.find((e:any) => e.title === chosenMenu).recipes;
-    console.log("TODO : navigate to anchor");
+    console.log("TODO : navigate to anchor ",chosenMenu);
+  }
+
+  chooseMenuById(id:number){
+    console.log("TODO : navigate to recipes_group_",id);
   }
 
   addRecipe(name:string){

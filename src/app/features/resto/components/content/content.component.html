@@ -35,7 +35,9 @@
                     </ion-thumbnail>
                     <!-- <ion-label >{{product.title}} {{product.price|formatBill}} {{form.value.recipe|quantity:product.title}}</ion-label> -->
                     <ion-label >{{product.title}}<br> {{product.price|formatBill}}</ion-label>
-                    <ion-chip *ngIf="form.value.recipe|quantity:product.title">{{form.value.recipe|quantity:product.title}}</ion-chip>
+                    <ion-chip *ngIf="form.value.recipe|quantity:product.title">
+                        {{form.value.recipe|quantity:product.title}}
+                    </ion-chip>
                 </div>
             </ion-col>
         </ion-row>

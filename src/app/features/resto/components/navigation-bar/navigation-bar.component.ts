@@ -11,19 +11,21 @@ export class NavigationBarComponent {
   constructor (private readonly _router : Router){ }
 
   @Input() navigationItems!:any;
-  @Output() itemChosen : EventEmitter<string> = new EventEmitter();
+  @Output() itemChosen : EventEmitter<number> = new EventEmitter();
 
-  selectMenu(menuToDisplay:string){
-    this.itemChosen.emit(menuToDisplay);
-  }
+  // selectMenu(menuToDisplay:string){
+  //   this.itemChosen.emit(menuToDisplay);
+  // }
 
   getName(i:number){
     return "recipes_group_"+i
   }
 
-  navigateToContent(postid:string) {
+  navigateToId(postid:number) {
+    console.log("navigate to recipes_group_",postid);
+
     const navigationExtras: NavigationExtras = {
-      fragment: postid
+      fragment: "recipes_group_"+postid
     };
     this._router.navigate(['resto'], navigationExtras);
   }
