@@ -1,9 +1,9 @@
-<ion-content [scrollEvents]="true">
+<ion-content [scrollEvents]="true" (ionScroll)="onScroll($event)">
     <div>
     <ion-grid class="ion-no-padding">
         <ion-row class="ion-no-padding">
             <ion-col size="3" class="ion-no-padding">
-                <app-navigation-bar
+                <app-navigation-bar #navigationElement
                     (itemChosen)="scrollTo($event)"
                     [navigationItems]="content"></app-navigation-bar>
             </ion-col>

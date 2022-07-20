@@ -9,7 +9,7 @@ import { IonItem } from '@ionic/angular';
 })
 export class NavigationBarComponent {
 
-  constructor (private readonly _router : Router){ }
+  constructor (private readonly _router : Router){}
 
   @Input() navigationItems!:any;
   @Output() itemChosen : EventEmitter<number> = new EventEmitter();
