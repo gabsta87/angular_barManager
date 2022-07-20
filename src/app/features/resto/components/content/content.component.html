@@ -11,7 +11,12 @@
                 let i = index;
                 let isFirst = first;
                 let isOdd = odd;" size="3">
-                <ion-row style="height: 100%;" (click)="addRecipe(product.title)" class="ion-text-center ion-align-items-center ion-justify-content-center">
+                <ion-row 
+                    style="height: 100%;" 
+                    (mousedown)="buttonClicked()" 
+                    class="ion-text-center ion-align-items-center ion-justify-content-center"
+                    (mouseup)="buttonRelease(product.title)"
+                    >
                     <div>
                     <ion-thumbnail>
                         <img *ngIf="product.imageUrl.length > 0" src="{{product.imageUrl}}">

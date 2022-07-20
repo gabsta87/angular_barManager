@@ -19,6 +19,10 @@ export class ContentComponent implements OnInit {
 
   form! : FormGroup;
   fullMenu! : any;
+  clickDelayStart! : number;
+  clickDate = 0;
+  releaseDate = 0;
+  delay = 400;
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -76,5 +80,51 @@ export class ContentComponent implements OnInit {
       bill.value + recipesList.at(i).value.price
     )
     this.recipeSelected.emit(bill.value);
+  }
+
+  removeRecipe(name:string){
+    const recipesList = this.form.get("recipe") as FormArray;
+    const bill = this.form.get("bill") as FormControl;
+
+    let elem;
+
+    for(let i = 0;i<this.items.data.length && elem===undefined;i++){
+      elem = this.items.data[i].recipes.find((e:{title:String,price:Number}) => e.title === name);
+    }
+
+    let price = 0;
+    if(elem)
+      price = elem.price;
+
+    // If the recipe already exists
+    let i = recipesList.value.findIndex((e:any) => e.name === name);
+    if(i >= 0 && recipesList.at(i).value.quantity > 0){
+      const elemToIncrease = recipesList.at(i);
+      const quantity = elemToIncrease.value.quantity;
+      elemToIncrease.patchValue({
+        quantity : quantity - 1
+      });
+      bill.patchValue(
+        bill.value - recipesList.at(i).value.price
+      )
+    }
+    // else (nothing must be done)
+    this.recipeSelected.emit(bill.value);
+  }
+
+  buttonClicked(){
+    this.clickDate = Date.now().valueOf();
+  }
+
+  buttonRelease(element:string){
+    this.releaseDate = Date.now().valueOf();
+
+    if(this.releaseDate-this.clickDate < this.delay){
+      console.log("short press");
+      this.addRecipe(element);
+    }else{
+      console.log("long press")
+      this.removeRecipe(element);
+    }
   }
 }
