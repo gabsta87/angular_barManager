@@ -38,15 +38,6 @@ export class ContentComponent implements OnInit {
     this._router.navigate(["login"],{queryParams:{lastname:'Maret',firstname:"Gabriel"}})
   }
 
-  chooseMenu(chosenMenu:string){
-    // this.selectedMenu = this.items.data.find((e:any) => e.title === chosenMenu).recipes;
-    console.log("TODO : navigate to anchor ",chosenMenu);
-  }
-
-  chooseMenuById(id:number){
-    console.log("TODO : navigate to recipes_group_",id);
-  }
-
   addRecipe(name:string){
     const recipesList = this.form.get("recipe") as FormArray;
     const bill = this.form.get("bill") as FormControl;

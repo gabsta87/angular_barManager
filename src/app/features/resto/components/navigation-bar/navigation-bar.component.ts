@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
 import { NavigationExtras, Router, RouterModule } from '@angular/router';
+import { IonItem } from '@ionic/angular';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -12,21 +13,18 @@ export class NavigationBarComponent {
 
   @Input() navigationItems!:any;
   @Output() itemChosen : EventEmitter<number> = new EventEmitter();
+  @ViewChildren(IonItem) ionItems!:QueryList<IonItem>;
 
-  // selectMenu(menuToDisplay:string){
-  //   this.itemChosen.emit(menuToDisplay);
-  // }
-
-  getName(i:number){
-    return "recipes_group_"+i
+  selectMenu(menuToDisplay:number){
+    this.itemChosen.emit(menuToDisplay);
+    this.setButtonActive(menuToDisplay);
   }
 
-  navigateToId(postid:number) {
-    console.log("navigate to recipes_group_",postid);
-
-    const navigationExtras: NavigationExtras = {
-      fragment: "recipes_group_"+postid
-    };
-    this._router.navigate(['resto'], navigationExtras);
+  setButtonActive(index:number){
+    this.ionItems.map((e:any)=> e.el.className = e.el.className.replace("active",""));
+    // let selectedItem:IonItem|undefined = this.ionItems.find((e:any)=> e.el.id === "menu_button_"+index);
+    let selectedItem:any = this.ionItems.find((e:any)=> e.el.id === "menu_button_"+index);
+    if(selectedItem)
+      selectedItem.el.className += " active";
   }
 }

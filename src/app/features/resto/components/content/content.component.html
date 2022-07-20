@@ -1,24 +1,6 @@
 <!-- <a routerLink="/login">Login</a>
 <ion-button (click)="navigateToLogin()">Login</ion-button> -->
 
-<!-- <div *ngIf="selectedMenu">
-    <ion-grid>
-        <ion-row>
-            <ion-col *ngFor="let product of selectedMenu;
-                let i = index;
-                let isFirst = first;
-                let isOdd = odd;" size="3">
-                <div (click)="addRecipe(product.title)" class="ion-text-center">
-                    <ion-thumbnail>
-                        <img src="{{product.imageUrl}}">
-                    </ion-thumbnail>
-                    <ion-label >{{product.title}}<br> {{product.price|formatBill}}</ion-label>
-                </div>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-</div> -->
-
 <div *ngIf="this.items.data" id="myContentDiv">
     <ion-grid class="ion-no-padding">
         <!-- <ion-row *ngFor="let p of [...this.items.data]"> -->
@@ -29,7 +11,8 @@
                 let i = index;
                 let isFirst = first;
                 let isOdd = odd;" size="3">
-                <div (click)="addRecipe(product.title)" class="ion-text-center ion-align-items-center ion-justify-content-center">
+                <ion-row style="height: 100%;" (click)="addRecipe(product.title)" class="ion-text-center ion-align-items-center ion-justify-content-center">
+                    <div>
                     <ion-thumbnail>
                         <img *ngIf="product.imageUrl.length > 0" src="{{product.imageUrl}}">
                     </ion-thumbnail>
@@ -38,7 +21,8 @@
                     <ion-chip *ngIf="form.value.recipe|quantity:product.title">
                         {{form.value.recipe|quantity:product.title}}
                     </ion-chip>
-                </div>
+                    </div>
+                </ion-row>
             </ion-col>
         </ion-row>
     </ion-grid>

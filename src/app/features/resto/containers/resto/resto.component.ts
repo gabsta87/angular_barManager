@@ -13,13 +13,15 @@ export class RestoComponent implements OnInit{
 
   content!:any;
   @ViewChild(IonContent)ionContent!: IonContent;
-  @ViewChild('content')contentComp!: ContentComponent;
+  @ViewChild('contentElement')contentComp!: ContentComponent;
 
   async ngOnInit() {
     this.content = this._resolver.snapshot.data["recettes"];
   }
 
-  scrollTo($event:any){
-    console.log("from resto components : ",$event,this.ionContent);
+  scrollTo($event:number){
+    const row:any = this.contentComp.ionRows.find((e:any) => "recipes_group_"+$event === e.el.id);
+    // console.log("scrolling to row = ",row);
+    this.ionContent.scrollToPoint(0,row.el.offsetTop,250);
   }
 }
