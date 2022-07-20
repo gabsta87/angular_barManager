@@ -120,10 +120,8 @@ export class ContentComponent implements OnInit {
     this.releaseDate = Date.now().valueOf();
 
     if(this.releaseDate-this.clickDate < this.delay){
-      console.log("short press");
       this.addRecipe(element);
     }else{
-      console.log("long press")
       this.removeRecipe(element);
     }
   }
