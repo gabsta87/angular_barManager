@@ -2,10 +2,9 @@
     <ion-list class="ion-no-padding">
         <ion-item button="true" id="menu_button_{{i}}" *ngFor="let product of navigationItems.data;
                             let i = index;
-                            ">
+                            " (click)="selectMenu(i)">
             <!-- <ion-label class="ion-text-center ion-text-wrap ion-padding-horizontal ion-text-uppercase" (click)="selectMenu(product.title)">{{product.title}}</ion-label> -->
             <ion-label class="ion-text-center ion-text-wrap ion-padding-horizontal ion-text-uppercase"
-                    (click)="selectMenu(i)"
                     >{{product.title}}</ion-label>
         </ion-item>
     </ion-list>

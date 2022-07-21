@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonContent, IonRow } from '@ionic/angular';
 import { ContentComponent } from '../../components/content/content.component';
@@ -9,7 +9,7 @@ import { NavigationBarComponent } from '../../components/navigation-bar/navigati
   templateUrl: './resto.component.html',
   styleUrls: ['./resto.component.scss']
 })
-export class RestoComponent implements OnInit{
+export class RestoComponent implements OnInit,AfterViewInit{
   constructor(private readonly _resolver : ActivatedRoute) {}
 
   content!:any;
@@ -20,7 +20,11 @@ export class RestoComponent implements OnInit{
 
   async ngOnInit() {
     this.content = this._resolver.snapshot.data["recettes"];
-    // this.navigationComp.setButtonActive(0); // Bug here, since we cannot initialize the first element as default selected
+  }
+
+  // This happens after the HTML has been generated
+  ngAfterViewInit(){
+    this.navigationComp.setButtonActive(0);
   }
 
   scrollTo($event:number){
