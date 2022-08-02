@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { IonRow } from '@ionic/angular';
 
 
@@ -11,7 +11,7 @@ import { IonRow } from '@ionic/angular';
 })
 export class ContentComponent implements OnInit {
 
-  constructor(private readonly _router : Router,private route: ActivatedRoute){ }
+  constructor(private readonly _router : Router){ }
 
   @Input() items ! : any;
   @Output() recipeSelected : EventEmitter<number> = new EventEmitter();
@@ -19,7 +19,6 @@ export class ContentComponent implements OnInit {
 
   form! : FormGroup;
   fullMenu! : any;
-  clickDelayStart! : number;
   clickDate = 0;
   releaseDate = 0;
   delay = 400;
@@ -109,6 +108,18 @@ export class ContentComponent implements OnInit {
       )
     }
     // else (nothing must be done)
+
+    this.recipeSelected.emit(bill.value);
+  }
+
+  emptyOrder(){
+    const recipesList = this.form.get("recipe") as FormArray;
+    for(let i = 0; i < recipesList.length; i++){
+      recipesList.at(i).patchValue({quantity : 0})
+    }
+    const bill = this.form.get("bill") as FormControl;
+    bill.patchValue(0);
+
     this.recipeSelected.emit(bill.value);
   }
 

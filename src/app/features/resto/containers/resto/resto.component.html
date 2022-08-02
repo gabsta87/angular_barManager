@@ -10,7 +10,7 @@
             <ion-col size="9">
                 <app-content #contentElement [items]="content" (recipeSelected)="footerElement.updateBill($event)"></app-content>
                 <div class="myFooterDiv">
-                    <app-footer #footerElement></app-footer>
+                    <app-footer #footerElement (emptyOrder)="contentElement.emptyOrder()"></app-footer>
                 </div>
             </ion-col>
         </ion-row>
