@@ -38,7 +38,7 @@ export class FooterComponent{
   async addOrder(newValue:number){
     const id = Date.now();
     const docRef = doc(this._db,this._dbName+'/'+id);
-    debugger;
+    // debugger;
     console.log("docRef : ",docRef);
     await setDoc(docRef,{orderValue:newValue}).catch(err => {
       console.log("Error : ",err);
