@@ -4,6 +4,10 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { IonicModule } from '@ionic/angular';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,10 @@ import { IonicModule } from '@ionic/angular';
       redirectTo:'resto',
       pathMatch:'full'
     }]),
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
     // IonicModule.forRoot({mode:'md'})
   ],
   providers: [],
