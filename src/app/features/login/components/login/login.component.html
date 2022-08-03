@@ -1,7 +1,13 @@
 <ion-content>
-<p>login works!</p>
-
-<ion-button (click)="loginWithGoogle()">Login with Google</ion-button>
-
-<a routerLink="/resto">Resto</a>
+    <div style="display:flex; height: 100%;" class="myDiv ion-justify-content-center ion-align-items-center">
+        <ion-button 
+            *ngIf="!(authState|async);else logoutTempl" 
+            (click)="loginWithGoogle()"
+        >Login with Google</ion-button>
+        <ng-template #logoutTempl>
+            <ion-button 
+                (click)="logout()"
+        >Logout</ion-button>
+        </ng-template>
+    </div>
 </ion-content>

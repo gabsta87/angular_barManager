@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth, GoogleAuthProvider, signInWithPopup, signOut } from '@angular/fire/auth';
+import { Auth, authState, GoogleAuthProvider, signInWithPopup, signOut, User } from '@angular/fire/auth';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,6 +8,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  public authState = authState(this._auth);
 
   constructor(
     private _route: ActivatedRoute,
@@ -28,4 +30,7 @@ export class LoginComponent implements OnInit {
     await signOut(this._auth);
   }
 
+  isLogged(){
+    return this._auth.currentUser;
+  }
 }

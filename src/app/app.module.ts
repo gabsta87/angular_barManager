@@ -7,7 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
+import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+
+const redirectToRestoPage = () => redirectLoggedInTo("resto");
+const redirectToLoginPage = () =>  redirectUnauthorizedTo("login");
 
 @NgModule({
   declarations: [
@@ -17,10 +21,12 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     BrowserModule,
     RouterModule.forRoot([{
       path:'login',
-      loadChildren:()=>import("./features/login/login.module").then(fichier=>fichier.LoginModule)
+      loadChildren:()=>import("./features/login/login.module").then(fichier=>fichier.LoginModule),
+      // ...canActivate(redirectToRestoPage)
     },{
       path:'resto',
-      loadChildren:()=>import("./features/resto/resto.module").then(fichier=>fichier.RestoModule)
+      loadChildren:()=>import("./features/resto/resto.module").then(fichier=>fichier.RestoModule),
+      ...canActivate(redirectToLoginPage)
     },{
       path:'',
       redirectTo:'resto',
