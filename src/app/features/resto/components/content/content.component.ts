@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChildren
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonRow } from '@ionic/angular';
+import { DbaccessService } from '../../services/dbaccess.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { IonRow } from '@ionic/angular';
 })
 export class ContentComponent implements OnInit {
 
-  constructor(private readonly _router : Router){ }
+  constructor(private readonly _router : Router, private readonly _dbAccess: DbaccessService){ }
 
   @Input() items ! : any;
   @Output() recipeSelected : EventEmitter<number> = new EventEmitter();
@@ -95,7 +96,7 @@ export class ContentComponent implements OnInit {
     if(elem)
       price = elem.price;
 
-    // If the recipe already exists
+    // If the recipe exists we remove it from order
     let i = recipesList.value.findIndex((e:any) => e.name === name);
     if(i >= 0 && recipesList.at(i).value.quantity > 0){
       const elemToIncrease = recipesList.at(i);
@@ -107,18 +108,14 @@ export class ContentComponent implements OnInit {
         bill.value - recipesList.at(i).value.price
       )
     }
-    // else (nothing must be done)
 
     this.recipeSelected.emit(bill.value);
   }
 
-  emptyOrder(){
+  emptyForm(){
     const recipesList = this.form.get("recipe") as FormArray;
-    for(let i = 0; i < recipesList.length; i++){
-      recipesList.at(i).patchValue({quantity : 0})
-    }
+    this.form.reset();
     const bill = this.form.get("bill") as FormControl;
-    bill.patchValue(0);
 
     this.recipeSelected.emit(bill.value);
   }
@@ -134,6 +131,19 @@ export class ContentComponent implements OnInit {
       this.addRecipe(element);
     }else{
       this.removeRecipe(element);
+    }
+  }
+
+  action(event:string){
+    console.log("event : ",event);
+    switch(event){
+      case 'save':
+        this._dbAccess.addOrder(this.form.value.recipe);
+        this.emptyForm();
+        break;
+      case 'empty':
+        this.emptyForm();
+        break;
     }
   }
 }

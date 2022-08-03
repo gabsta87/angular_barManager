@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Observable } from 'rxjs';
-import { DbaccessService } from '../../services/dbaccess.service';
 
 @Component({
   selector: 'app-footer',
@@ -9,9 +7,9 @@ import { DbaccessService } from '../../services/dbaccess.service';
 })
 export class FooterComponent{
 
-  constructor(private readonly _db: DbaccessService){}
+  constructor(){}
 
-  @Output() emptyOrder = new EventEmitter();
+  @Output() componentAction = new EventEmitter<string>();
 
   billValue : number = 0;
   now : Date = new Date();
@@ -20,8 +18,11 @@ export class FooterComponent{
     this.billValue = param;
   }
 
-  sendOrder(){
-    this._db.addOrder(this.billValue);
-    this.emptyOrder.emit();
+  saveOrder(){
+    this.componentAction.emit("save");
+  }
+
+  clearOrder(){
+    this.componentAction.emit("empty");
   }
 }
