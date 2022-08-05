@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonRow } from '@ionic/angular';
 import { DbaccessService } from '../../services/dbaccess.service';
+import { TotalServiceService } from '../../services/total-service.service';
 
 
 @Component({
@@ -12,11 +13,16 @@ import { DbaccessService } from '../../services/dbaccess.service';
 })
 export class ContentComponent implements OnInit {
 
-  constructor(private readonly _router : Router, private readonly _dbAccess: DbaccessService){ }
+  constructor(
+    private readonly _router : Router, 
+    private readonly _dbAccess: DbaccessService,
+    private readonly _totalService: TotalServiceService
+    ){ }
 
   @Input() items ! : any;
   @Output() recipeSelected : EventEmitter<number> = new EventEmitter();
   @ViewChildren(IonRow) ionRows!:QueryList<IonRow>;
+
 
   form! : FormGroup;
   fullMenu! : any;
@@ -80,6 +86,7 @@ export class ContentComponent implements OnInit {
       bill.value + recipesList.at(i).value.price
     )
     this.recipeSelected.emit(bill.value);
+    this._totalService.items$.next(bill.value);
   }
 
   removeRecipe(name:string){
@@ -110,6 +117,7 @@ export class ContentComponent implements OnInit {
     }
 
     this.recipeSelected.emit(bill.value);
+    this._totalService.items$.next(bill.value);
   }
 
   emptyForm(){
@@ -118,6 +126,7 @@ export class ContentComponent implements OnInit {
     const bill = this.form.get("bill") as FormControl;
 
     this.recipeSelected.emit(bill.value);
+    this._totalService.items$.next([]);
   }
 
   buttonClicked(){

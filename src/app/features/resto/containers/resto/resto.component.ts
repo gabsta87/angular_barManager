@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IonContent, IonRow } from '@ionic/angular';
 import { ContentComponent } from '../../components/content/content.component';
 import { NavigationBarComponent } from '../../components/navigation-bar/navigation-bar.component';
+import { TotalServiceService } from '../../services/total-service.service';
 
 @Component({
   selector: 'app-resto',
@@ -10,7 +11,13 @@ import { NavigationBarComponent } from '../../components/navigation-bar/navigati
   styleUrls: ['./resto.component.scss']
 })
 export class RestoComponent implements OnInit,AfterViewInit{
-  constructor(private readonly _resolver : ActivatedRoute) {}
+
+  totalService$ = this._service.items$.asObservable().pipe();
+
+  constructor(
+    private readonly _resolver : ActivatedRoute,
+    private readonly _service: TotalServiceService,
+    ) {}
 
   content!:any;
   @ViewChild(IonContent)ionContent!: IonContent;

@@ -10,7 +10,8 @@
             <ion-col size="9">
                 <app-content #contentElement [items]="content" (recipeSelected)="footerElement.updateBill($event)"></app-content>
                 <div class="myFooterDiv">
-                    <app-footer #footerElement (componentAction)="contentElement.action($event)"></app-footer>
+                    <!-- <app-footer #footerElement (componentAction)="contentElement.action($event)"></app-footer> -->
+                    <app-footer #footerElement (componentAction)="contentElement.action($event)" [value]="totalService$|async"></app-footer>
                 </div>
             </ion-col>
         </ion-row>
