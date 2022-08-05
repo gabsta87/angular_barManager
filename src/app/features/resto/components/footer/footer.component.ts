@@ -13,7 +13,6 @@ export class FooterComponent{
   @Input() value!:any;
 
   billValue : number = 0;
-  now : Date = new Date();
 
   updateBill(param:number){
     this.billValue = param;
